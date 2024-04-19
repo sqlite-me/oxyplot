@@ -274,8 +274,10 @@ namespace OxyPlot.Series
             var midPoint = new ScreenPoint(
                 (this.PlotModel.PlotArea.Left + this.PlotModel.PlotArea.Right) * 0.5, (this.PlotModel.PlotArea.Top + this.PlotModel.PlotArea.Bottom) * 0.5);
 
-            foreach (var slice in this.slices)
+            for (var i=0;i<this.slices.Count;i++)
             {
+                var slice = this.slices[i];
+                var item = this.GetItem(i);
                 var outerPoints = new List<ScreenPoint>();
                 var innerPoints = new List<ScreenPoint>();
 
@@ -335,8 +337,9 @@ namespace OxyPlot.Series
                 // Render label outside the slice
                 if (this.OutsideLabelFormat != null)
                 {
-                    string label = string.Format(
-                        this.OutsideLabelFormat, slice.Value, slice.Label, slice.Value / this.total * 100);
+                    string label = //string.Format(
+                        //this.OutsideLabelFormat, slice.Value, slice.Label, slice.Value / this.total * 100);
+                    StringHelper.Format(this.ActualCulture, this.OutsideLabelFormat, item, slice.Value, slice.Label, slice.Value / this.total * 100);
                     int sign = Math.Sign(Math.Cos(midAngleRadians));
 
                     // tick points
@@ -368,8 +371,9 @@ namespace OxyPlot.Series
                 // Render a label inside the slice
                 if (this.InsideLabelFormat != null && !this.InsideLabelColor.IsUndefined())
                 {
-                    string label = string.Format(
-                        this.InsideLabelFormat, slice.Value, slice.Label, slice.Value / this.total * 100);
+                    string label = //string.Format(
+                        //this.InsideLabelFormat, slice.Value, slice.Label, slice.Value / this.total * 100);
+                    StringHelper.Format(this.ActualCulture, this.InsideLabelFormat, item, slice.Value, slice.Label, slice.Value / this.total * 100);
                     double r = (innerRadius * (1 - this.InsideLabelPosition)) + (outerRadius * this.InsideLabelPosition);
                     var labelPosition = new ScreenPoint(
                         mp.X + (r * Math.Cos(midAngleRadians)), mp.Y + (r * Math.Sin(midAngleRadians)));
