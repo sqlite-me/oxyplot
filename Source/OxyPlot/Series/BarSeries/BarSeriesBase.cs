@@ -202,6 +202,7 @@ namespace OxyPlot.Series
         /// </summary>
         /// <param name="rc">The render context</param>
         /// <param name="item">The item.</param>
+        /// <param name="itemData">The item Data.</param>
         /// <param name="baseValue">The bar item base value.</param>
         /// <param name="topValue">The bar item top value.</param>
         /// <param name="categoryValue">The bar item category value.</param>
@@ -211,6 +212,7 @@ namespace OxyPlot.Series
         protected void RenderLabel(
             IRenderContext rc,
             T item,
+            object itemData,
             double baseValue,
             double topValue,
             double categoryValue,
@@ -246,7 +248,7 @@ namespace OxyPlot.Series
                 v.AddRange(labelValues.Cast<object>());
             }
 
-            var s = StringHelper.Format(this.ActualCulture, labelFormatString, item, v.ToArray());
+            var s = StringHelper.Format(this.ActualCulture, labelFormatString, itemData, v.ToArray());
             ScreenPoint pt;
             var y = (categoryEndValue + categoryValue) / 2;
             var sign = Math.Sign(topValue - baseValue);

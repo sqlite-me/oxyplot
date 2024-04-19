@@ -219,7 +219,8 @@ namespace OxyPlot.Series
                 {
                     this.RenderLabel(
                         rc,
-                        (IntervalBarItem)this.GetItem(i),
+                        item,
+                        this.GetItem(i),
                         item.Start,
                         item.End,
                         categoryValue,

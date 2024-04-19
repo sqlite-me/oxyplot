@@ -180,6 +180,7 @@ namespace OxyPlot.Series
             for (var i = 0; i < this.ValidItems.Count; i++)
             {
                 var item = this.ValidItems[i];
+                var itemData = this.GetItem(i);
 
                 var categoryIndex = item.GetCategoryIndex(i);
 
@@ -218,6 +219,7 @@ namespace OxyPlot.Series
                     this.RenderLabel(
                         rc,
                         item,
+                        itemData,
                         baseValue,
                         item.Minimum,
                         barStart,
@@ -229,6 +231,7 @@ namespace OxyPlot.Series
                     this.RenderLabel(
                         rc,
                         item,
+                        itemData,
                         baseValue,
                         item.Maximum,
                         barStart,
